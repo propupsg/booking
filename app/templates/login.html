@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Booking System{% endblock %}
+
+{% block header %}Login to Your Account{% endblock %}
+
+{% block content %}
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        <label for="username">Username:</label>
+        {{ form.username(id='username') }}
+        <br>
+        <label for="password">Password:</label>
+        {{ form.password(id='password') }}
+        <br>
+        {{ form.submit() }}
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+    <p>New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+{% endblock %}
